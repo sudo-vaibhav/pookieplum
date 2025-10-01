@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Heart, DoorOpen } from "lucide-react"
-import { FcGoogle } from "react-icons/fc"
-import { useClientSideNullableAuth } from "@/lib/firebase/clientApp"
-import { signInWithGoogle, signOut } from "@/lib/firebase/auth"
-import { useEffect } from "react"
-import { initAuthCookies } from "@/lib/firebase/cookies"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Heart, DoorOpen } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { useClientSideNullableAuth } from "@/lib/firebase/clientApp";
+import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
+import { useEffect } from "react";
+import { initAuthCookies } from "@/lib/firebase/cookies";
 
 export function Navbar() {
-  const { user } = useClientSideNullableAuth()
+  const { user } = useClientSideNullableAuth();
 
   useEffect(() => {
-    initAuthCookies()
-  }, [])
+    initAuthCookies();
+  }, []);
 
   const handleSignIn = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    signInWithGoogle()
-  }
+    event.preventDefault();
+    signInWithGoogle();
+  };
 
   const handleSignOut = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    signOut()
-  }
+    event.preventDefault();
+    signOut();
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -42,16 +42,28 @@ export function Navbar() {
 
           {/* Navigation Links */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">
+            <a
+              href="#features"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
               Features
             </a>
-            <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">
+            <a
+              href="#about"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
               About
             </a>
-            <a href="#pricing" className="text-gray-600 hover:text-gray-900 transition-colors">
+            <a
+              href="#pricing"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
               Pricing
             </a>
-            <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">
+            <a
+              href="#contact"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
               Contact
             </a>
           </nav>
@@ -98,5 +110,5 @@ export function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }

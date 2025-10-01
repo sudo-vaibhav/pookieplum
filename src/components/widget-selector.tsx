@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
-} from "@/components/ui/dialog"
-import { 
-  Calendar, 
-  DollarSign, 
-  Smile, 
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Calendar,
+  DollarSign,
+  Smile,
   Send,
   MapPin,
   Bell,
   Clock,
-  Video
-} from "lucide-react"
-import type { WidgetData } from "./chat-widgets"
+  Video,
+} from "lucide-react";
+import type { WidgetData } from "./chat-widgets";
 
 interface WidgetSelectorProps {
-  onSendWidget: (widget: WidgetData) => void
+  onSendWidget: (widget: WidgetData) => void;
 }
 
 export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedWidget, setSelectedWidget] = useState<string>("")
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedWidget, setSelectedWidget] = useState<string>("");
 
   // Sticker data
   const stickers = [
@@ -41,28 +41,28 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
     { emoji: "💕", name: "Two Hearts" },
     { emoji: "💖", name: "Sparkling Heart" },
     { emoji: "🌹", name: "Rose" },
-  ]
+  ];
 
   // Money widget form
   const [moneyForm, setMoneyForm] = useState({
     amount: "",
     currency: "₹",
-    note: ""
-  })
+    note: "",
+  });
 
   // Days since widget form
   const [daysSinceForm, setDaysSinceForm] = useState({
     eventName: "",
     eventDate: "",
-    emoji: "📅"
-  })
+    emoji: "📅",
+  });
 
   // Shared location widget form
   const [locationForm, setLocationForm] = useState({
     locationName: "",
     address: "",
-    message: ""
-  })
+    message: "",
+  });
 
   // Date reminder widget form
   const [dateReminderForm, setDateReminderForm] = useState({
@@ -71,8 +71,8 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
     eventTime: "",
     location: "",
     commuteTime: "",
-    emoji: "⏰"
-  })
+    emoji: "⏰",
+  });
 
   // Calendar event widget form
   const [calendarForm, setCalendarForm] = useState({
@@ -82,23 +82,23 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
     duration: "",
     location: "",
     description: "",
-    priority: "medium" as "low" | "medium" | "high"
-  })
+    priority: "medium" as "low" | "medium" | "high",
+  });
 
   // Gone live widget form
   const [goneLiveForm, setGoneLiveForm] = useState({
     streamTitle: "",
-    activity: "working"
-  })
+    activity: "working",
+  });
 
   const handleSendSticker = (emoji: string, name: string) => {
     onSendWidget({
       type: "sticker",
       stickerUrl: emoji,
-      stickerName: name
-    })
-    setIsOpen(false)
-  }
+      stickerName: name,
+    });
+    setIsOpen(false);
+  };
 
   const handleSendMoney = () => {
     if (moneyForm.amount && parseFloat(moneyForm.amount) > 0) {
@@ -106,12 +106,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         type: "money",
         amount: parseFloat(moneyForm.amount),
         currency: moneyForm.currency,
-        note: moneyForm.note || undefined
-      })
-      setMoneyForm({ amount: "", currency: "₹", note: "" })
-      setIsOpen(false)
+        note: moneyForm.note || undefined,
+      });
+      setMoneyForm({ amount: "", currency: "₹", note: "" });
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleSendDaysSince = () => {
     if (daysSinceForm.eventName && daysSinceForm.eventDate) {
@@ -119,12 +119,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         type: "days-since",
         eventName: daysSinceForm.eventName,
         eventDate: daysSinceForm.eventDate,
-        emoji: daysSinceForm.emoji
-      })
-      setDaysSinceForm({ eventName: "", eventDate: "", emoji: "📅" })
-      setIsOpen(false)
+        emoji: daysSinceForm.emoji,
+      });
+      setDaysSinceForm({ eventName: "", eventDate: "", emoji: "📅" });
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleSendLocation = () => {
     if (locationForm.locationName && locationForm.address) {
@@ -132,45 +132,73 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         type: "shared-location",
         locationName: locationForm.locationName,
         address: locationForm.address,
-        message: locationForm.message || undefined
-      })
-      setLocationForm({ locationName: "", address: "", message: "" })
-      setIsOpen(false)
+        message: locationForm.message || undefined,
+      });
+      setLocationForm({ locationName: "", address: "", message: "" });
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleSendDateReminder = () => {
-    if (dateReminderForm.eventName && dateReminderForm.eventDate && dateReminderForm.eventTime && dateReminderForm.location) {
+    if (
+      dateReminderForm.eventName &&
+      dateReminderForm.eventDate &&
+      dateReminderForm.eventTime &&
+      dateReminderForm.location
+    ) {
       onSendWidget({
         type: "date-reminder",
         eventName: dateReminderForm.eventName,
         eventDate: dateReminderForm.eventDate,
         eventTime: dateReminderForm.eventTime,
         location: dateReminderForm.location,
-        commuteTime: dateReminderForm.commuteTime ? parseInt(dateReminderForm.commuteTime) : undefined,
-        emoji: dateReminderForm.emoji
-      })
-      setDateReminderForm({ eventName: "", eventDate: "", eventTime: "", location: "", commuteTime: "", emoji: "⏰" })
-      setIsOpen(false)
+        commuteTime: dateReminderForm.commuteTime
+          ? parseInt(dateReminderForm.commuteTime)
+          : undefined,
+        emoji: dateReminderForm.emoji,
+      });
+      setDateReminderForm({
+        eventName: "",
+        eventDate: "",
+        eventTime: "",
+        location: "",
+        commuteTime: "",
+        emoji: "⏰",
+      });
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleSendCalendarEvent = () => {
-    if (calendarForm.eventName && calendarForm.eventDate && calendarForm.eventTime) {
+    if (
+      calendarForm.eventName &&
+      calendarForm.eventDate &&
+      calendarForm.eventTime
+    ) {
       onSendWidget({
         type: "calendar-event",
         eventName: calendarForm.eventName,
         eventDate: calendarForm.eventDate,
         eventTime: calendarForm.eventTime,
-        duration: calendarForm.duration ? parseInt(calendarForm.duration) : undefined,
+        duration: calendarForm.duration
+          ? parseInt(calendarForm.duration)
+          : undefined,
         location: calendarForm.location || undefined,
         description: calendarForm.description || undefined,
-        priority: calendarForm.priority
-      })
-      setCalendarForm({ eventName: "", eventDate: "", eventTime: "", duration: "", location: "", description: "", priority: "medium" })
-      setIsOpen(false)
+        priority: calendarForm.priority,
+      });
+      setCalendarForm({
+        eventName: "",
+        eventDate: "",
+        eventTime: "",
+        duration: "",
+        location: "",
+        description: "",
+        priority: "medium",
+      });
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleGoneLive = () => {
     if (goneLiveForm.streamTitle) {
@@ -179,28 +207,46 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         streamTitle: goneLiveForm.streamTitle,
         activity: goneLiveForm.activity,
         isActive: true,
-        duration: 0
-      })
-      setGoneLiveForm({ streamTitle: "", activity: "working" })
-      setIsOpen(false)
+        duration: 0,
+      });
+      setGoneLiveForm({ streamTitle: "", activity: "working" });
+      setIsOpen(false);
     }
-  }
+  };
 
   const resetForms = () => {
-    setSelectedWidget("")
-    setMoneyForm({ amount: "", currency: "₹", note: "" })
-    setDaysSinceForm({ eventName: "", eventDate: "", emoji: "📅" })
-    setLocationForm({ locationName: "", address: "", message: "" })
-    setDateReminderForm({ eventName: "", eventDate: "", eventTime: "", location: "", commuteTime: "", emoji: "⏰" })
-    setCalendarForm({ eventName: "", eventDate: "", eventTime: "", duration: "", location: "", description: "", priority: "medium" })
-    setGoneLiveForm({ streamTitle: "", activity: "working" })
-  }
+    setSelectedWidget("");
+    setMoneyForm({ amount: "", currency: "₹", note: "" });
+    setDaysSinceForm({ eventName: "", eventDate: "", emoji: "📅" });
+    setLocationForm({ locationName: "", address: "", message: "" });
+    setDateReminderForm({
+      eventName: "",
+      eventDate: "",
+      eventTime: "",
+      location: "",
+      commuteTime: "",
+      emoji: "⏰",
+    });
+    setCalendarForm({
+      eventName: "",
+      eventDate: "",
+      eventTime: "",
+      duration: "",
+      location: "",
+      description: "",
+      priority: "medium",
+    });
+    setGoneLiveForm({ streamTitle: "", activity: "working" });
+  };
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => {
-      setIsOpen(open)
-      if (!open) resetForms()
-    }}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        setIsOpen(open);
+        if (!open) resetForms();
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant="ghost" size="sm">
           <Smile className="h-4 w-4" />
@@ -210,7 +256,7 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         <DialogHeader>
           <DialogTitle>Send a Widget</DialogTitle>
         </DialogHeader>
-        
+
         {!selectedWidget && (
           <div className="space-y-4">
             <Button
@@ -306,7 +352,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                 <select
                   id="currency"
                   value={moneyForm.currency}
-                  onChange={(e) => setMoneyForm({ ...moneyForm, currency: e.target.value })}
+                  onChange={(e) =>
+                    setMoneyForm({ ...moneyForm, currency: e.target.value })
+                  }
                   className="w-full p-2 border rounded-md"
                 >
                   <option value="₹">INR (₹)</option>
@@ -322,7 +370,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   type="number"
                   step="0.01"
                   value={moneyForm.amount}
-                  onChange={(e) => setMoneyForm({ ...moneyForm, amount: e.target.value })}
+                  onChange={(e) =>
+                    setMoneyForm({ ...moneyForm, amount: e.target.value })
+                  }
                   placeholder="0.00"
                 />
               </div>
@@ -332,7 +382,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="note"
                 value={moneyForm.note}
-                onChange={(e) => setMoneyForm({ ...moneyForm, note: e.target.value })}
+                onChange={(e) =>
+                  setMoneyForm({ ...moneyForm, note: e.target.value })
+                }
                 placeholder="Chai, food, movie tickets..."
               />
             </div>
@@ -347,7 +399,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Button
                 className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600"
                 onClick={handleSendMoney}
-                disabled={!moneyForm.amount || parseFloat(moneyForm.amount) <= 0}
+                disabled={
+                  !moneyForm.amount || parseFloat(moneyForm.amount) <= 0
+                }
               >
                 <Send className="h-4 w-4 mr-1" />
                 Send
@@ -364,7 +418,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="eventName"
                 value={daysSinceForm.eventName}
-                onChange={(e) => setDaysSinceForm({ ...daysSinceForm, eventName: e.target.value })}
+                onChange={(e) =>
+                  setDaysSinceForm({
+                    ...daysSinceForm,
+                    eventName: e.target.value,
+                  })
+                }
                 placeholder="First date, last trip to Goa, Diwali celebration..."
               />
             </div>
@@ -374,18 +433,38 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                 id="eventDate"
                 type="date"
                 value={daysSinceForm.eventDate}
-                onChange={(e) => setDaysSinceForm({ ...daysSinceForm, eventDate: e.target.value })}
+                onChange={(e) =>
+                  setDaysSinceForm({
+                    ...daysSinceForm,
+                    eventDate: e.target.value,
+                  })
+                }
               />
             </div>
             <div>
               <Label htmlFor="emoji">Emoji</Label>
               <div className="flex space-x-2">
-                {["📅", "💕", "✈️", "🎉", "🏠", "💍", "🎂", "🪔", "🎊", "🌟"].map((emoji) => (
+                {[
+                  "📅",
+                  "💕",
+                  "✈️",
+                  "🎉",
+                  "🏠",
+                  "💍",
+                  "🎂",
+                  "🪔",
+                  "🎊",
+                  "🌟",
+                ].map((emoji) => (
                   <Button
                     key={emoji}
-                    variant={daysSinceForm.emoji === emoji ? "default" : "outline"}
+                    variant={
+                      daysSinceForm.emoji === emoji ? "default" : "outline"
+                    }
                     size="sm"
-                    onClick={() => setDaysSinceForm({ ...daysSinceForm, emoji })}
+                    onClick={() =>
+                      setDaysSinceForm({ ...daysSinceForm, emoji })
+                    }
                   >
                     {emoji}
                   </Button>
@@ -420,7 +499,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="locationName"
                 value={locationForm.locationName}
-                onChange={(e) => setLocationForm({ ...locationForm, locationName: e.target.value })}
+                onChange={(e) =>
+                  setLocationForm({
+                    ...locationForm,
+                    locationName: e.target.value,
+                  })
+                }
                 placeholder="Coffee Shop, Home, Office..."
               />
             </div>
@@ -429,7 +513,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="address"
                 value={locationForm.address}
-                onChange={(e) => setLocationForm({ ...locationForm, address: e.target.value })}
+                onChange={(e) =>
+                  setLocationForm({ ...locationForm, address: e.target.value })
+                }
                 placeholder="123 Main St, Bangalore, Karnataka"
               />
             </div>
@@ -438,7 +524,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="message"
                 value={locationForm.message}
-                onChange={(e) => setLocationForm({ ...locationForm, message: e.target.value })}
+                onChange={(e) =>
+                  setLocationForm({ ...locationForm, message: e.target.value })
+                }
                 placeholder="Come find me here!"
               />
             </div>
@@ -470,7 +558,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="reminderEventName"
                 value={dateReminderForm.eventName}
-                onChange={(e) => setDateReminderForm({ ...dateReminderForm, eventName: e.target.value })}
+                onChange={(e) =>
+                  setDateReminderForm({
+                    ...dateReminderForm,
+                    eventName: e.target.value,
+                  })
+                }
                 placeholder="Dinner date, Movie night..."
               />
             </div>
@@ -481,7 +574,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   id="reminderDate"
                   type="date"
                   value={dateReminderForm.eventDate}
-                  onChange={(e) => setDateReminderForm({ ...dateReminderForm, eventDate: e.target.value })}
+                  onChange={(e) =>
+                    setDateReminderForm({
+                      ...dateReminderForm,
+                      eventDate: e.target.value,
+                    })
+                  }
                 />
               </div>
               <div>
@@ -490,7 +588,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   id="reminderTime"
                   type="time"
                   value={dateReminderForm.eventTime}
-                  onChange={(e) => setDateReminderForm({ ...dateReminderForm, eventTime: e.target.value })}
+                  onChange={(e) =>
+                    setDateReminderForm({
+                      ...dateReminderForm,
+                      eventTime: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -499,33 +602,51 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="reminderLocation"
                 value={dateReminderForm.location}
-                onChange={(e) => setDateReminderForm({ ...dateReminderForm, location: e.target.value })}
+                onChange={(e) =>
+                  setDateReminderForm({
+                    ...dateReminderForm,
+                    location: e.target.value,
+                  })
+                }
                 placeholder="Restaurant name, Mall, etc."
               />
             </div>
             <div>
-              <Label htmlFor="commuteTime">Commute Time (minutes, optional)</Label>
+              <Label htmlFor="commuteTime">
+                Commute Time (minutes, optional)
+              </Label>
               <Input
                 id="commuteTime"
                 type="number"
                 value={dateReminderForm.commuteTime}
-                onChange={(e) => setDateReminderForm({ ...dateReminderForm, commuteTime: e.target.value })}
+                onChange={(e) =>
+                  setDateReminderForm({
+                    ...dateReminderForm,
+                    commuteTime: e.target.value,
+                  })
+                }
                 placeholder="30"
               />
             </div>
             <div>
               <Label htmlFor="reminderEmoji">Emoji</Label>
               <div className="flex space-x-2">
-                {["⏰", "💕", "🍽️", "🎬", "🎉", "📍", "💍", "🌹"].map((emoji) => (
-                  <Button
-                    key={emoji}
-                    variant={dateReminderForm.emoji === emoji ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setDateReminderForm({ ...dateReminderForm, emoji })}
-                  >
-                    {emoji}
-                  </Button>
-                ))}
+                {["⏰", "💕", "🍽️", "🎬", "🎉", "📍", "💍", "🌹"].map(
+                  (emoji) => (
+                    <Button
+                      key={emoji}
+                      variant={
+                        dateReminderForm.emoji === emoji ? "default" : "outline"
+                      }
+                      size="sm"
+                      onClick={() =>
+                        setDateReminderForm({ ...dateReminderForm, emoji })
+                      }
+                    >
+                      {emoji}
+                    </Button>
+                  )
+                )}
               </div>
             </div>
             <div className="flex space-x-2">
@@ -539,7 +660,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Button
                 className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600"
                 onClick={handleSendDateReminder}
-                disabled={!dateReminderForm.eventName || !dateReminderForm.eventDate || !dateReminderForm.eventTime || !dateReminderForm.location}
+                disabled={
+                  !dateReminderForm.eventName ||
+                  !dateReminderForm.eventDate ||
+                  !dateReminderForm.eventTime ||
+                  !dateReminderForm.location
+                }
               >
                 <Send className="h-4 w-4 mr-1" />
                 Send
@@ -556,7 +682,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="calendarEventName"
                 value={calendarForm.eventName}
-                onChange={(e) => setCalendarForm({ ...calendarForm, eventName: e.target.value })}
+                onChange={(e) =>
+                  setCalendarForm({
+                    ...calendarForm,
+                    eventName: e.target.value,
+                  })
+                }
                 placeholder="Team meeting, Doctor appointment..."
               />
             </div>
@@ -567,7 +698,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   id="calendarDate"
                   type="date"
                   value={calendarForm.eventDate}
-                  onChange={(e) => setCalendarForm({ ...calendarForm, eventDate: e.target.value })}
+                  onChange={(e) =>
+                    setCalendarForm({
+                      ...calendarForm,
+                      eventDate: e.target.value,
+                    })
+                  }
                 />
               </div>
               <div>
@@ -576,7 +712,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   id="calendarTime"
                   type="time"
                   value={calendarForm.eventTime}
-                  onChange={(e) => setCalendarForm({ ...calendarForm, eventTime: e.target.value })}
+                  onChange={(e) =>
+                    setCalendarForm({
+                      ...calendarForm,
+                      eventTime: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -587,7 +728,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                   id="duration"
                   type="number"
                   value={calendarForm.duration}
-                  onChange={(e) => setCalendarForm({ ...calendarForm, duration: e.target.value })}
+                  onChange={(e) =>
+                    setCalendarForm({
+                      ...calendarForm,
+                      duration: e.target.value,
+                    })
+                  }
                   placeholder="60"
                 />
               </div>
@@ -596,7 +742,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
                 <select
                   id="priority"
                   value={calendarForm.priority}
-                  onChange={(e) => setCalendarForm({ ...calendarForm, priority: e.target.value as "low" | "medium" | "high" })}
+                  onChange={(e) =>
+                    setCalendarForm({
+                      ...calendarForm,
+                      priority: e.target.value as "low" | "medium" | "high",
+                    })
+                  }
                   className="w-full p-2 border rounded-md"
                 >
                   <option value="low">Low</option>
@@ -610,7 +761,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="calendarLocation"
                 value={calendarForm.location}
-                onChange={(e) => setCalendarForm({ ...calendarForm, location: e.target.value })}
+                onChange={(e) =>
+                  setCalendarForm({ ...calendarForm, location: e.target.value })
+                }
                 placeholder="Office, Zoom, etc."
               />
             </div>
@@ -619,7 +772,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="description"
                 value={calendarForm.description}
-                onChange={(e) => setCalendarForm({ ...calendarForm, description: e.target.value })}
+                onChange={(e) =>
+                  setCalendarForm({
+                    ...calendarForm,
+                    description: e.target.value,
+                  })
+                }
                 placeholder="Additional details..."
               />
             </div>
@@ -634,7 +792,11 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Button
                 className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600"
                 onClick={handleSendCalendarEvent}
-                disabled={!calendarForm.eventName || !calendarForm.eventDate || !calendarForm.eventTime}
+                disabled={
+                  !calendarForm.eventName ||
+                  !calendarForm.eventDate ||
+                  !calendarForm.eventTime
+                }
               >
                 <Send className="h-4 w-4 mr-1" />
                 Send
@@ -651,7 +813,12 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <Input
                 id="streamTitle"
                 value={goneLiveForm.streamTitle}
-                onChange={(e) => setGoneLiveForm({ ...goneLiveForm, streamTitle: e.target.value })}
+                onChange={(e) =>
+                  setGoneLiveForm({
+                    ...goneLiveForm,
+                    streamTitle: e.target.value,
+                  })
+                }
                 placeholder="Working on my project, Cooking dinner..."
               />
             </div>
@@ -660,7 +827,9 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               <select
                 id="activity"
                 value={goneLiveForm.activity}
-                onChange={(e) => setGoneLiveForm({ ...goneLiveForm, activity: e.target.value })}
+                onChange={(e) =>
+                  setGoneLiveForm({ ...goneLiveForm, activity: e.target.value })
+                }
                 className="w-full p-2 border rounded-md"
               >
                 <option value="working">Working 💻</option>
@@ -673,8 +842,13 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
               </select>
             </div>
             <div className="bg-red-50 p-3 rounded-lg border border-red-200">
-              <p className="text-xs text-red-600 mb-2">📹 Your partner will be invited to watch you live!</p>
-              <p className="text-xs text-gray-600">This creates a one-way video stream where they can see what you’re doing.</p>
+              <p className="text-xs text-red-600 mb-2">
+                📹 Your partner will be invited to watch you live!
+              </p>
+              <p className="text-xs text-gray-600">
+                This creates a one-way video stream where they can see what
+                you’re doing.
+              </p>
             </div>
             <div className="flex space-x-2">
               <Button
@@ -697,5 +871,5 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
         )}
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Heart, MessageCircle, Lock, Sparkles } from "lucide-react"
-import { Navbar } from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import { Heart, MessageCircle, Lock, Sparkles } from "lucide-react";
+import { Navbar } from "@/components/navbar";
 
 export default function Home() {
   return (
@@ -16,24 +16,33 @@ export default function Home() {
               <Sparkles className="h-6 w-6 text-yellow-400 fill-yellow-400 absolute -bottom-1 -left-1" />
             </div>
           </div>
-          
+
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 bg-clip-text text-transparent mb-6">
             PookiePlum
           </h1>
-          
+
           <p className="text-xl sm:text-2xl text-gray-600 mb-4">
             The sweetest way to stay connected with your special someone
           </p>
-          
+
           <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
-            Private, secure, and adorable messaging designed just for couples. Share your love story with cute themes, couple goals, and intimate conversations.
+            Private, secure, and adorable messaging designed just for couples.
+            Share your love story with cute themes, couple goals, and intimate
+            conversations.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-lg px-8 py-6">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-lg px-8 py-6"
+            >
               Start Your Love Story
             </Button>
-            <Button size="lg" variant="outline" className="border-pink-300 text-pink-600 hover:bg-pink-50 text-lg px-8 py-6">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-pink-300 text-pink-600 hover:bg-pink-50 text-lg px-8 py-6"
+            >
               Watch Demo
             </Button>
           </div>
@@ -41,7 +50,10 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gradient-to-b from-pink-50 to-purple-50">
+      <section
+        id="features"
+        className="py-20 bg-gradient-to-b from-pink-50 to-purple-50"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -51,30 +63,39 @@ export default function Home() {
               Everything you need to keep your relationship strong and fun
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Lock className="h-8 w-8 text-pink-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Private & Secure</h3>
-              <p className="text-gray-600">End-to-end encryption ensures your sweet conversations stay between you two</p>
+              <p className="text-gray-600">
+                End-to-end encryption ensures your sweet conversations stay
+                between you two
+              </p>
             </div>
-            
+
             <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MessageCircle className="h-8 w-8 text-purple-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Cute Themes</h3>
-              <p className="text-gray-600">Adorable chat themes and stickers designed specifically for couples</p>
+              <p className="text-gray-600">
+                Adorable chat themes and stickers designed specifically for
+                couples
+              </p>
             </div>
-            
+
             <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="h-8 w-8 text-yellow-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Relationship Goals</h3>
-              <p className="text-gray-600">Track anniversaries, set couple goals, and celebrate milestones together</p>
+              <p className="text-gray-600">
+                Track anniversaries, set couple goals, and celebrate milestones
+                together
+              </p>
             </div>
           </div>
         </div>
@@ -97,7 +118,9 @@ export default function Home() {
               <div className="text-gray-600">Uptime</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">
+                24/7
+              </div>
               <div className="text-gray-600">Support</div>
             </div>
           </div>
@@ -111,9 +134,13 @@ export default function Home() {
             Ready to Fall in Love?
           </h2>
           <p className="text-xl text-pink-100 mb-8">
-            Join thousands of couples who trust PookiePlum with their love stories
+            Join thousands of couples who trust PookiePlum with their love
+            stories
           </p>
-          <Button size="lg" className="bg-white text-pink-600 hover:bg-gray-100 text-lg px-8 py-6">
+          <Button
+            size="lg"
+            className="bg-white text-pink-600 hover:bg-gray-100 text-lg px-8 py-6"
+          >
             Download PookiePlum
           </Button>
         </div>
@@ -127,14 +154,29 @@ export default function Home() {
               <Heart className="h-8 w-8 text-pink-500 fill-pink-500" />
               <span className="text-2xl font-bold text-white">PookiePlum</span>
             </div>
-            
+
             <div className="flex space-x-6 text-gray-400">
-              <a href="#privacy" className="hover:text-pink-400 transition-colors">Privacy</a>
-              <a href="#terms" className="hover:text-pink-400 transition-colors">Terms</a>
-              <a href="#support" className="hover:text-pink-400 transition-colors">Support</a>
+              <a
+                href="#privacy"
+                className="hover:text-pink-400 transition-colors"
+              >
+                Privacy
+              </a>
+              <a
+                href="#terms"
+                className="hover:text-pink-400 transition-colors"
+              >
+                Terms
+              </a>
+              <a
+                href="#support"
+                className="hover:text-pink-400 transition-colors"
+              >
+                Support
+              </a>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 PookiePlum. Made with 💕 for couples everywhere.</p>
           </div>
