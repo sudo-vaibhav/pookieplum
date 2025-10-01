@@ -8,7 +8,6 @@ import {
   Heart, 
   Send, 
   Paperclip, 
-  Smile, 
   MoreHorizontal,
   Settings,
   Phone,

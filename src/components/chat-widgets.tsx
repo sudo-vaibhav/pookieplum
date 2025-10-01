@@ -1,6 +1,6 @@
 "use client"
 
-import { Calendar, DollarSign, Heart, Gift, CheckCircle, MapPin, Clock, Bell, Car, Navigation, Video, Users, Play } from "lucide-react"
+import { Calendar, DollarSign, CheckCircle, MapPin, Bell, Car, Navigation, Video, Users, Play } from "lucide-react"
 
 // Widget data type definitions
 export interface StickerWidget {

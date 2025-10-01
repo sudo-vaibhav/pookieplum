@@ -1,7 +1,6 @@
 "use client";
 import { setCookie, deleteCookie } from "cookies-next";
 import { onIdTokenChanged } from "./auth";
-import { auth } from "./clientApp";
 
 // Set up automatic cookie management for Firebase auth
 export function initAuthCookies() {

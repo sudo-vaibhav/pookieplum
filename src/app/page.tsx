@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Heart, MessageCircle, Lock, Sparkles, Users, Zap } from "lucide-react"
+import { Heart, MessageCircle, Lock, Sparkles } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 
 export default function Home() {

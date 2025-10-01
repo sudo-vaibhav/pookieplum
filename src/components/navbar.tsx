@@ -11,7 +11,7 @@ import { useEffect } from "react"
 import { initAuthCookies } from "@/lib/firebase/cookies"
 
 export function Navbar() {
-  const { user, loading } = useClientSideNullableAuth()
+  const { user } = useClientSideNullableAuth()
 
   useEffect(() => {
     initAuthCookies()

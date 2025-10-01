@@ -674,7 +674,7 @@ export function WidgetSelector({ onSendWidget }: WidgetSelectorProps) {
             </div>
             <div className="bg-red-50 p-3 rounded-lg border border-red-200">
               <p className="text-xs text-red-600 mb-2">📹 Your partner will be invited to watch you live!</p>
-              <p className="text-xs text-gray-600">This creates a one-way video stream where they can see what you're doing.</p>
+              <p className="text-xs text-gray-600">This creates a one-way video stream where they can see what you’re doing.</p>
             </div>
             <div className="flex space-x-2">
               <Button
